@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Leave</title>
+
+    <link rel="stylesheet" href="index.css">
+  </head>
+  <body>
+    <div class="root">
+      <div class="subroot">
+        <div class="heading">
+        <h1>Employee Leave Request Form</h1>
+    <p style=font-size:20px>
+      Please fill this form with all the required information. HR will contact <br>
+      you shortly after the leave request has been approved by your <br> supervisor.
+    </p > <hr style=width:600px>
+    <form method="post" action="/Tests/Post/">
+      <div style="font-weight:bold">Employee name &nbsp;&nbsp;&nbsp;&nbsp; <input type="text" style="margin-top:20px" name="employeename"></div>
+      <br />
+      <div style="font-weight:bold">Supervisor name &nbsp;&nbsp;&nbsp; <input type="text" name="supervisorname"></div>
+      <br />
+      <div style="font-weight:bold">Department &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="departmentname"></div>
+      <br />
+     
+      <form>
+      <legend>Reason of leave</legend>
+      <input
+          type="checkbox"
+          name="Reason for leave"
+          value="Vacation"
+        />Vacation<br />
+       <input
+          type="checkbox"
+          name="Reason for leave"
+          value="Illness"
+        />Illness<br />
+        <input
+          type="checkbox"
+          name="Reason for leave"
+          value="Leave of absence"
+        />Leave of absence<br />
+        <input
+          type="checkbox"
+          name="Reason for leave"
+          value="Other"
+        />Other<br />
+        <br />
+      </form>
+    </div>
+    <br />
+
+    <div>
+      <span>
+        <form action="/action_page.php">
+          <label for="Leave Date">Leave Date:</label>
+          <input type="date" id="Leave Date" name="Leave Date" />
+        </form>
+      </span>
+      <br>
+      <span>
+        <form action="/action_page.php">
+          <label for="Return Date">Return Date:</label>
+          <input type="date" id="Return Date" name="Return Date" />
+        </form>
+      </span>
+    </div>
+  </form><br>
+    <input type="submit" value="Submit">
+  </div>
+</div>
+</div>
+  </body>
+</html>
