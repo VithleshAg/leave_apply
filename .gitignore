@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+/leave_apply_backend/node_modules
 /.pnp
 .pnp.js
 
