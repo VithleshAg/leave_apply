@@ -2,15 +2,14 @@ const { Leave } = require("../models/leave");
 
 exports.addInLeaveHistory = (req, res) => {
   const userId = req.profile._id;
-  const { total, leave_type } = req.body;
-  const fromDate = new Date(req.body.from);
-  const toDate = new Date(req.body.to);
+  const { total, leave_type, from, to } = req.body.leaves;
+  const fromDate = new Date(from);
+  const toDate = new Date(to);
   const totalDays =
     (toDate.getTime() - fromDate.getTime()) / (1000 * 60 * 60 * 24) + 1;
 
   Leave.findOne({ user: userId }).exec((err, result) => {
     if (err) return res.status(400).json({ error: "User not found" });
-
     if (!(totalDays >= 1 && totalDays == total))
       return res
         .status(400)
@@ -44,6 +43,27 @@ exports.addInLeaveHistory = (req, res) => {
         return res.status(400).json({ error: "Leaves can't be updated" });
 
       res.json({ data });
+    });
+  });
+};
+
+exports.getLeaveHistory = (req, res) => {
+  const userId = req.profile._id;
+  const leaveType = req.params.type;
+
+  Leave.findOne({ user: userId }).exec((err, result) => {
+    console.log("leaves: ", result.leaves);
+    let leaves = result.leaves;
+    if (err) return res.status(400).json({ error: "User not found" });
+    else if (leaveType == "Annual leave")
+      leaves = leaves.filter((l) => l.leave_type == leaveType);
+    else if (leaveType == "Sick leave")
+      leaves = leaves.filter((l) => l.leave_type == leaveType);
+
+    return res.status(200).json({
+      type:
+        leaveType == "Annual leave" || "Sick leave" ? leaveType : "All leave",
+      leaves,
     });
   });
 };

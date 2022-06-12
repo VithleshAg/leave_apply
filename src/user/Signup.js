@@ -84,7 +84,14 @@ const Signup = () => {
     event.preventDefault();
     setValues({ ...values, error: false });
     signup({ name, email, password }).then((data) => {
-      if (data.error) {
+      if (!data) {
+        setValues({
+          ...values,
+          error: "Something went wrong",
+          success: false,
+          loading: false,
+        });
+      } else if (data.error) {
         setValues({ ...values, error: data.error, success: false });
       } else
         setValues({
